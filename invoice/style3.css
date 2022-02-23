@@ -1,0 +1,100 @@
+body{
+    margin: 50px;
+    font-size: large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.container{
+    border: 2px solid black;
+    width: 100%;
+    margin: 20px;
+    padding: 20px 40px 20px 40px;
+    height: 100%;
+}
+.box1{
+    display: flex;
+    margin-bottom: 20px;
+}
+.box-1{
+    flex: 2;
+}
+.box-2{
+    flex: 1;
+}
+.box-3{
+    flex: 1;
+}
+#invoice_num{
+    width: 30%;
+    height: 60%;
+}
+#language{
+    width: 50%;
+    height: 60%;
+}
+#currency{
+    width: 80%;
+    height: 60%;
+}
+.box2{
+    display: flex;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.box2-1{
+    flex: 2;
+}
+.box2-2{
+    flex: 1;
+}
+#date{
+    width: 300px;
+    height: 15%;
+}
+#due{
+    width: 300px;
+    height: 15%;
+}
+#info{
+    width: 350px;
+    height: 40%;
+}
+.box3{
+    display: flex;
+    margin-top: 30px;
+}
+.box3-1{
+    flex: 3;
+}
+.box3-2{
+    flex: 1;
+}
+.box3-3{
+    flex: 1;
+}
+.box3-4{
+    flex: 1;
+}
+.box3-5{
+    flex: 1;
+}
+#item{
+    width: 80%;
+    height: 50px;
+}
+#quantity{
+    width: 100px;
+    height: 25px;
+}
+#rate{
+    height: 25px;
+}
+#amount{
+    height: 25px;
+}
+#copy{
+    width: 50px;
+    height: 30px;
+}
+table{
+    width: 100%;
+}

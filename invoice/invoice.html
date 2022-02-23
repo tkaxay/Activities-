@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div style="float: right;width: 100px;">
+        <button id="download" style="display: block;" onclick="save()">
+            <i class="fa fa-print"></i>
+        </button>
+    </div>
+    <div class="container" id = "invoice">
+        <div class="Section1" style="border-bottom: 1px solid #ccc; padding: 10px 40px 10px 40px">
+            <div style="display: flex; justify-content: space-between;">
+                <div>
+                    <div style="display: flex; justify-content: flex-start">
+                        <span class="badge badge-danger Due" style="width: 60px; padding-top: 10px; font-size: large; margin-right: 10px;">DUE</span>
+                        <h3 class="Invoice">Invoice</h3>
+                    </div>
+                    <br>
+                    <p style="border: 1px solid lightgrey; width: max-content; padding: 5px;">Thank you for your purchase. Timely payment will be appreciated.</p>
+                </div>
+                <!-- <img src="Logo.png" alt="LOGO" style="display: flex; width: 20% ;"> -->
+                <div class="Logo" style=" width: 20% ;">
+                    <span class="badge badge-primary Due" style="width: auto; height: 50px ;padding-top: 10px; font-size: larger; margin-right: 10px; float:right; text-align: center; padding-top: 15px;">SEARCE</span>
+                </div>
+            </div>
+
+
+        <div class="box1">
+            <div class="box-1">
+                <label for="invoice_num" id="inno"><b>Invoice Number</b></label><br>
+                <span id="basic-addon1" style="width: 30px;">#</span>
+                <input type="text" id="invoice_num" name="invoice_num">
+            </div>
+            <div class="box-2">
+                <label for="language" id="lang"><b>Language</b></label><br>
+                <select name="language" id="language">
+                    <option>English (US)</option>
+                </select>
+            </div>
+            <div class="box-3">
+                <label for="currency" id="curr"><b>Currency</b></label><br>
+                <select name="currency" id="currency" onchange="calculateSubTotal()">
+                    <option value="Rupee">Rupee (IN)</option>
+                    <option value="Dollar">Dollar (US)</option>
+                    <option value="Yen">Yen (JP)</option>
+                    <option value="Pound">Pound (UK)</option>
+                </select>
+            </div>
+        </div><br>
+        <hr size="2" color="lightgray">
+
+
+        <div class="box2">
+            <div class="box2-1">
+                <span>
+                    <b>From</b><br>
+                    Your Business, Inc.<br>
+                    Your Address<br>
+                    City & ZIP, Your Country 
+                </span><br><br><br>
+                <b>To</b><br>
+                <textarea id="info"></textarea>
+            </div>
+            <div class="box2-2">
+                <label for="date"><b>Date</b></label><br>
+                <input type="date" id="date" name="date"><br><br>
+                <label for="due"><b>Invoice Due</b></label><br>
+                <select name="due" id="due">
+                    <option value="5">After 5 days</option>
+                    <option value="10">After 10 days</option>
+                    <option value="20">After 20 days</option>
+                    <option value="30">After 30 days</option>
+                </select><br><br>
+                <label for="order_num"><b>Purchase Order Number</b></label><br>
+                <input type="text" id="date" name="date"><br><br>
+            </div>
+        </div><br>
+        <hr size="2" color="lightgray">
+
+
+            <div class="box3">
+                <div class="box3-1">
+                    <b>Name</b>
+                </div>
+                <div class="box3-2">
+                    <b>Quantity</b>
+                </div>
+                <div class="box3-3">
+                    <b>Rate</b>
+                </div>
+                <div class="box3-4">
+                    <b>Amount</b>
+                </div><br>
+            </div>
+            <hr size="2" color="lightgray">
+
+
+          
+              
+
+          
+
+            <div class="row my-2 mx-2" id="items">
+                <div class="row" id="item1">
+                    <div class="col-6">
+                        <div class="mb-1">
+                            <textarea class="form-control" id="ItemName1" placeholder="Items you are selling"
+                                rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-2 mx-0 px-1">
+                        <input type="text" class="form-control text-end" id="ItemQt1" value="0"
+                            onchange="calculateAmtQt(this.id)" />
+                    </div>
+                    <div class="col-2 mx-0 px-1">
+                        <input type="text" class="form-control text-end" id="ItemRate1" value="0"
+                            onchange="calculateAmtRate(this.id)" />
+                    </div>
+                    <div class="col-2 px-2 mx-0">
+                            <input width="100px" type="text" id="ItemAmt1" class="form-control text-end" placeholder="0"
+                                value="0" readonly />
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-block my-0">
+                        <button class="btn mb-4 px-3 py-2" style="background-color: rgb(231, 231, 231); margin-left: 20px;"
+                            type="button" id="cloneButton1" onclick="cloneItem(this.id)">
+                            <i class="fa fa-copy"></i>
+                        </button>
+                    </div>
+                    <div class="d-grid gap-2 d-md-block my-0">
+                        <button class="btn mb-4 px-3 py-2" style="background-color: rgb(231, 231, 231); margin-left: 20px;"
+                            type="button" id="deleteButton1" onclick="deleteItem(this.id)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="box4" style="display: flex; margin-top: 20px;">
+                <div class="box4-1" style="flex: 1;">
+                    <button class="newlinebutton" style="background-color: darkcyan; color: white; width: 100px; height: 30px;" onclick="addRow()">New Line</button>
+                </div>
+                <div class="box4-2" style="flex: 1; display: block;width: 100px;">
+                    <span>Sub Total</span>
+                    <span id="sub_total" style="float: right;">00.00</span>
+                    <hr size="2" color="lightgray">
+
+
+                    <select style="width: 200px; height: 30px;">
+                        <option value="vtax">Value Added Tax</option>
+                    </select>
+                    <select id="taxval" style="width: 80px; height: 30px;">
+                        <option value="20">20%</option>
+                    </select>
+                    <span id="withtax" style="float: right;">00.00</span>
+                    <hr size="2" color="lightgray">
+
+
+                    <span><b  id="total1">Total (Rupee)</b></span>
+                    <span id="total2" style="float: right;">00.00</span>
+                    <br>
+
+                    <div style="width: 800px;display: flex;">
+                        <label for="grandtotal" style="background-color: red; color: white; border-radius: 4px; padding: 10px;font-weight: bold;">Total Due
+                        <input type="number" name="grandtotal1" id="grandtotal" readonly style="width: 60%;height: 32px;border: none; margin-left: 3px;text-align: right;">
+                        <br>
+                    </div>
+                    </label>
+                </div>     
+            </div>
+    </div>
+    <script src="script.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>
